@@ -1,4 +1,4 @@
-package com.picpaysimplificado.picpaysimplificado.domain.user.transactions;
+package com.picpaysimplificado.picpaysimplificado.Transaction;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity(name = "transactions")
-@Table(name = "transactions")
+@Entity(name = "Transactions")
+@Table(name = "Transactions")
 @Getter
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of = "Id")
-public class transactions {
+public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
