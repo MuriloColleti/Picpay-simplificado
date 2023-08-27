@@ -1,4 +1,4 @@
-package com.picpaysimplificado.picpaysimplificado.Repostory;
+package com.picpaysimplificado.Repostory;
 
 import jakarta.transaction.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;

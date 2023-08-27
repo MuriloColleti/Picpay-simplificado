@@ -1,18 +1,22 @@
-package com.picpaysimplificado.picpaysimplificado.domainuser;
+package com.picpaysimplificado.services;
 
-import com.picpaysimplificado.picpaysimplificado.Repostory.UserRepostory;
+import com.picpaysimplificado.domain.user.User;
+import com.picpaysimplificado.domain.user.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.picpaysimplificado.repositories.UserRepository;
+
 
 import java.math.BigDecimal;
 
 @Service
-public class UserService implements UserServiceInterface {
+public class UserService {
+    
     @Autowired
-    private UserRepostory repostory;
+    private UserRepository repository;
 
     public void ValidadeTransaction(User Sender , BigDecimal amount) throws Exception {
-        if(Sender.getUserType() == UserType.MERCHAN) {
+        if(Sender.getUserType() == UserType.MERCHANT) {
             throw new Exception("Usuario lojista não esta permitido a realizar transação");
         }
         if(Sender.getBalance().compareTo(amount) < 0 ){
@@ -20,10 +24,12 @@ public class UserService implements UserServiceInterface {
         }
     }
     public User findUserById(Long id) throws Exception {
-        return (User) this.repostory.findUserById(id).orElseThrow(() -> new Exception("Usuario não encontrado"));
+        return (User) this.repository.findUserById(id).orElseThrow(() -> new Exception("Usuario não encontrado"));
+    }
+    public void saveUser(User user){
+        this.repository.save(user);
     }
 
-    @Override
-    public void Save(User user) {
-    }
+
 }
+
