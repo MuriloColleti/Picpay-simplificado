@@ -47,8 +47,8 @@ public class TransactionsService {
         sender.setBalance(sender.getBalance().subtract(transaction.value()));
         reciver.setBalance((reciver.getBalance().add(transaction.value())));
 
-        this.userService.saveUser(sender);
-        this.userService.saveUser(reciver);
+        userService.saveUser(sender);
+        userService.saveUser(reciver);
     }
 
     private void save(Transactions newtransaction) {
