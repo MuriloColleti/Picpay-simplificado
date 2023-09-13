@@ -1,8 +1,8 @@
 package com.picpaysimplificado.domain.transaction;
 
+import com.picpaysimplificado.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
-import org.apache.catalina.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
