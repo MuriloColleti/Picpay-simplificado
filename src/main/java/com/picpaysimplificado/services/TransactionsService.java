@@ -3,15 +3,16 @@ package com.picpaysimplificado.services;
 import com.picpaysimplificado.DTOS.TransactionDTO;
 import com.picpaysimplificado.domain.transaction.Transactions;
 import com.picpaysimplificado.domain.user.User;
+import com.picpaysimplificado.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,12 +22,14 @@ public class TransactionsService {
     private UserService userService;
 
     @Autowired
-    private TransactionsService repository;
+    private TransactionRepository repository;
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private NotificationService notificationservice;
 
-    public void createTransaction(TransactionDTO transaction) throws Exception {
+    public Transactions createTransaction(TransactionDTO transaction) throws Exception {
         User sender = this.userService.findUserById(transaction.senderId());
         User reciver = this.userService.findUserById(transaction.reciverId());
 
@@ -45,8 +48,12 @@ public class TransactionsService {
         sender.setBalance(sender.getBalance().subtract(transaction.value()));
         reciver.setBalance((reciver.getBalance().add(transaction.value())));
 
+        this.notificationservice.sendNotification(sender,"Transação realizada com sucesso");
+        this.notificationservice.sendNotification(reciver, "Transação recebi com sucesso");
+
         userService.saveUser(sender);
         userService.saveUser(reciver);
+        return newtransaction;
     }
 
     private void save(Transactions newtransaction) {
@@ -61,9 +68,16 @@ public class TransactionsService {
             String message = (String) authorizationResponse.getBody().get("message");
             return "Autorizado".equalsIgnoreCase(message);
         }
-        return false;
 
+        return false;
     }
+    public List<Transactions> findAll() {
+        return this.repository.findAll();
+}
+
+
+
+
 }
 
 

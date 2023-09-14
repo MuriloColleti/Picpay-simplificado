@@ -12,8 +12,9 @@ import org.springframework.web.client.RestTemplate;
 public class NotificationService {
     @Autowired
     private RestTemplate restTemplate;
+    private NotificationDTO notificationRequest;
 
-    public void sendNotification(User user, String message, NotificationDTO notificationRequest) throws Exception {
+    public void sendNotification(User user, String message) throws Exception {
         String Email = user.getEmail();
         notificationRequest = new NotificationDTO(Email, message);
 

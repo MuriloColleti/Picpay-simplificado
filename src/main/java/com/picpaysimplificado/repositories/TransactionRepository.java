@@ -1,8 +1,10 @@
-package com.picpaysimplificado.Repostory;
+package com.picpaysimplificado.repositories;
 
-import jakarta.transaction.Transaction;
+import com.picpaysimplificado.domain.transaction.Transactions;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+@Repository
+public interface TransactionRepository extends JpaRepository<Transactions, Long> {
 
 }
