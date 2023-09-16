@@ -1,6 +1,6 @@
 package com.picpaysimplificado.services;
 
-import com.picpaysimplificado.DTOS.TransactionDTO;
+import com.picpaysimplificado.dtos.TransactionDTO;
 import com.picpaysimplificado.domain.transaction.Transactions;
 import com.picpaysimplificado.domain.user.User;
 import com.picpaysimplificado.repositories.TransactionRepository;

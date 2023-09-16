@@ -1,6 +1,6 @@
 package com.picpaysimplificado.domain.user;
 
-import com.picpaysimplificado.DTOS.UserDTO;
+import com.picpaysimplificado.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,12 +23,12 @@ public class User {
     private String lastName;
 
     @Column(unique = true)
-    private String Doccument;
+    private String document;
 
     @Column(unique = true)
     private String email;
 
-    private String passoword;
+    private String password;
 
     private BigDecimal Balance;
 
@@ -38,10 +38,10 @@ public class User {
     public User(UserDTO date){
         this.firstName = date.firtName();
         this.userType = date.userType();
-        this.passoword = date.passoword();
+        this.password = date.passoword();
         this.email = date.email();
         this.Balance = date.Balance();
-        this.Doccument = date.document();
+        this.document = date.document();
     }
 
 }
