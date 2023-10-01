@@ -36,7 +36,7 @@ public class User {
     private UserType userType;
 
     public User(UserDTO date){
-        this.firstName = date.firtName();
+        this.firstName = date.firstName();
         this.userType = date.userType();
         this.password = date.passoword();
         this.email = date.email();
